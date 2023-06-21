@@ -1,0 +1,50 @@
+.Job-container {
+  width: 70vw;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 0 auto;
+  padding: 20px;
+  overflow: hidden;
+  text-align: left;
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.Job-title {
+  text-align: left;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.Job-company {
+  text-align: left;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.Job-about {
+  text-align: left;
+  font-size: 0.8rem;
+}
+
+.Job-container a {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background-color: goldenrod;
+
+  padding: 10px;
+  margin: 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  /* text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.3),
+    0px -4px 10px rgba(255, 255, 255, 0.3); */
+}
+
+.Job-container a:hover {
+  background-color: white;
+  border: 1px solid goldenrod;
+  color: goldenrod;
+}

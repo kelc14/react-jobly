@@ -1,0 +1,38 @@
+.LoginForm {
+  width: 50vw;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-top: 10%;
+  padding: 20px;
+  overflow: hidden;
+}
+.LoginForm-heading {
+  color: goldenrod;
+}
+.LoginForm-form {
+  text-align: left;
+}
+.LoginForm-label {
+  display: block;
+  padding-top: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+.LoginForm-input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.LoginForm-button {
+  background-color: goldenrod;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 16px 32px;
+  font-size: 1rem;
+  margin: 4px 2px;
+  cursor: pointer;
+}

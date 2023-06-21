@@ -1,0 +1,14 @@
+.Profile {
+  width: 70vw;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-top: 5%;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.Profile-heading {
+  color: goldenrod;
+}

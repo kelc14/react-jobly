@@ -1,0 +1,26 @@
+.Company-container {
+  width: 70vw;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 0 auto;
+  padding: 20px;
+  overflow: hidden;
+  text-align: left;
+  margin-bottom: 25px;
+}
+
+.Company-company {
+  text-align: left;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.Company-about {
+  text-align: left;
+  font-size: 0.8rem;
+}
+
+.Company-logo {
+  float: right;
+}
