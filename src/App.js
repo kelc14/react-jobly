@@ -1,36 +1,47 @@
-import React, { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import LoggedInContext from "./hooks/LoggedInContext";
+import UsernameContext from "./hooks/UsernameContext";
 
-// components
-import Home from "./Home";
-import AnonRoutes from "./AnonRoutes/AnonRoutes";
-import UserRoutes from "./UserRoutes/UserRoutes";
-
-import LoginForm from "./AnonRoutes/LoginForm";
-import SignUpForm from "./AnonRoutes/SignUpForm";
-import Companies from "./UserRoutes/Companies";
-import Jobs from "./UserRoutes/Jobs";
-import Profile from "./UserRoutes/Profile";
-import NavBar from "./NavBar";
+//components
+import NavBar from "./nav/NavBar";
+import RoutesComp from "./nav/RoutesComp";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState();
+  const [username, setUsername] = useState();
+
+  // console.log("the user is logged in:", isLoggedIn);
+  // console.log("the username is", username);
+
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("username");
+    if (loggedInUser) {
+      setUsername(loggedInUser);
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  const loginUser = (username) => {
+    setIsLoggedIn(true);
+    setUsername(username);
+    // localStorage.setItem("username", username);
+    // console.log(`${username} is logged in`);
+  };
+
+  const logoutUser = () => {
+    setIsLoggedIn(false);
+    setUsername(null);
+    localStorage.clear();
+  };
+
   return (
     <div className="App">
       <LoggedInContext.Provider value={isLoggedIn}>
-        <NavBar />
-        <Routes>
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/signup" element={<SignUpForm />} />
-
-          <Route path="/companies" element={<Companies />} />
-          <Route path="/jobs" element={<Jobs />} />
-          <Route path="/profile" element={<Profile />} />
-
-          <Route path="/" element={<Home />} />
-        </Routes>
+        <UsernameContext.Provider value={username}>
+          <NavBar loginUser={loginUser} logoutUser={logoutUser} />
+          <RoutesComp loginUser={loginUser} />
+        </UsernameContext.Provider>
       </LoggedInContext.Provider>
     </div>
   );

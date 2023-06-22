@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./SignUpForm.css";
 
-const SignUpForm = () => {
+const SignUpForm = ({ loginUser }) => {
   const INITIAL_STATE = {
     username: "",
     password: "",
@@ -16,7 +16,7 @@ const SignUpForm = () => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    // addBox(formData);
+    loginUser();
     setFormData(INITIAL_STATE);
   };
 

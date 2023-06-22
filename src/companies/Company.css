@@ -10,6 +10,15 @@
   margin-bottom: 25px;
 }
 
+.Company-container:hover {
+  background-color: goldenrod;
+}
+
+.Company-link {
+  text-decoration: none;
+  color: black;
+}
+
 .Company-company {
   text-align: left;
   font-weight: bold;

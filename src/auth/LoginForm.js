@@ -1,19 +1,32 @@
 import React, { useState } from "react";
-
+import JoblyApi from "../api/api";
 import "./LoginForm.css";
+import useErrors from "../hooks/useErrors";
+import { useNavigate } from "react-router-dom";
 
-const LoginForm = () => {
+const LoginForm = ({ loginUser }) => {
   const INITIAL_STATE = { username: "", password: "" };
   const [formData, setFormData] = useState(INITIAL_STATE);
+  let navigate = useNavigate();
+
+  const [err, documentErrors, showFormError] = useErrors();
 
   /** Send {USERNAME, PASSWORD} to API to check if logged in and provide feedback
    *    & clear form. */
 
-  const handleSubmit = (evt) => {
+  const handleSubmit = async (evt) => {
     evt.preventDefault();
-    console.log(formData);
+    try {
+      await JoblyApi.userLogin(formData);
+      loginUser(formData.username);
+      navigate("/");
+    } catch (err) {
+      documentErrors(err);
+    }
     setFormData(INITIAL_STATE);
   };
+
+  /** setLoggedInContext */
 
   /** Update local state w/curr state of input elem */
 
@@ -55,6 +68,7 @@ const LoginForm = () => {
           value={formData.password}
           className="LoginForm-input"
         />
+        {err && showFormError()}
 
         <button className="LoginForm-button">Log in</button>
       </form>

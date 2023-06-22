@@ -10,6 +10,7 @@
 
 .Jobs-heading {
   margin: 40px auto;
+  margin-bottom: 10px;
   font-family: "Ubuntu", sans-serif;
   font-size: 3rem;
   font-weight: bold;
@@ -18,4 +19,10 @@
   letter-spacing: 5px;
   text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.3),
     0px -4px 10px rgba(255, 255, 255, 0.3);
+}
+
+.Jobs-error {
+  color: goldenrod;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 1.5rem;
 }

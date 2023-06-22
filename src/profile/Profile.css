@@ -1,0 +1,40 @@
+.ProfileForm {
+  width: 70vw;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-top: 5%;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.ProfileForm-heading {
+  color: goldenrod;
+}
+
+.ProfileForm-form {
+  text-align: left;
+}
+.ProfileForm-label {
+  display: block;
+  padding-top: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+.ProfileForm-input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.ProfileForm-button {
+  background-color: goldenrod;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 16px 32px;
+  font-size: 1rem;
+  margin: 4px 2px;
+  cursor: pointer;
+}
