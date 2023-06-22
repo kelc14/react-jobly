@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./SignUpForm.css";
+import JoblyApi from "../api/api";
 
 const SignUpForm = ({ loginUser }) => {
   const INITIAL_STATE = {
@@ -14,8 +15,9 @@ const SignUpForm = ({ loginUser }) => {
   /** Send {USERNAME, PASSWORD} to API to check if logged in and provide feedback
    *    & clear form. */
 
-  const handleSubmit = (evt) => {
+  const handleSubmit = async (evt) => {
     evt.preventDefault();
+    //
     loginUser();
     setFormData(INITIAL_STATE);
   };

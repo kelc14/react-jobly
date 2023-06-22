@@ -1,48 +1,63 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import LoggedInContext from "./hooks/LoggedInContext";
-import UsernameContext from "./hooks/UsernameContext";
+import JoblyApi from "./api/api";
+import UserTokenContext from "./hooks/UserTokenContext";
+import UserContext from "./hooks/UserContext";
+import jwt_decode from "jwt-decode";
 
 //components
 import NavBar from "./nav/NavBar";
 import RoutesComp from "./nav/RoutesComp";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState();
-  const [username, setUsername] = useState();
+  const [userToken, setUserToken] = useState();
+  const [user, setUser] = useState();
 
-  // console.log("the user is logged in:", isLoggedIn);
-  // console.log("the username is", username);
+  // console.log("the user is logged in with userToken:", userToken);
+  // console.log("the user is", user);
 
+  // check to see if a token is stored in local storage, if so, gather user details based on username and add to state
   useEffect(() => {
-    const loggedInUser = localStorage.getItem("username");
-    if (loggedInUser) {
-      setUsername(loggedInUser);
-      setIsLoggedIn(true);
+    const storedToken = localStorage.getItem("token");
+    JoblyApi.token = storedToken;
+    if (storedToken) {
+      const { username } = jwt_decode(storedToken);
+      const getUserInfo = async () => {
+        let userData = await JoblyApi.getUserDetails(username);
+        setUser(userData);
+      };
+      getUserInfo(username);
+      setUserToken(storedToken);
     }
-  }, []);
+  }, [userToken]);
 
-  const loginUser = (username) => {
-    setIsLoggedIn(true);
-    setUsername(username);
-    // localStorage.setItem("username", username);
-    // console.log(`${username} is logged in`);
+  // login user after log in or sign up form completed successfully
+  const loginUser = async (username, token) => {
+    setUserToken(token);
+    let userData = await JoblyApi.getUserDetails(username);
+    setUser(userData);
+    localStorage.setItem("token", token);
   };
 
+  const updateUser = (newUserData) => {
+    setUser(newUserData);
+  };
+
+  // log out user after log out button clicked, clear local storage
   const logoutUser = () => {
-    setIsLoggedIn(false);
-    setUsername(null);
+    setUserToken(null);
+    setUser(null);
     localStorage.clear();
   };
 
   return (
     <div className="App">
-      <LoggedInContext.Provider value={isLoggedIn}>
-        <UsernameContext.Provider value={username}>
+      <UserTokenContext.Provider value={userToken}>
+        <UserContext.Provider value={user}>
           <NavBar loginUser={loginUser} logoutUser={logoutUser} />
-          <RoutesComp loginUser={loginUser} />
-        </UsernameContext.Provider>
-      </LoggedInContext.Provider>
+          <RoutesComp loginUser={loginUser} updateUser={updateUser} />
+        </UserContext.Provider>
+      </UserTokenContext.Provider>
     </div>
   );
 }

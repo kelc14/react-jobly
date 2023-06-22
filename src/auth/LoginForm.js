@@ -17,8 +17,9 @@ const LoginForm = ({ loginUser }) => {
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     try {
-      await JoblyApi.userLogin(formData);
-      loginUser(formData.username);
+      let token = await JoblyApi.userLogin(formData);
+
+      loginUser(formData.username, token);
       navigate("/");
     } catch (err) {
       documentErrors(err);

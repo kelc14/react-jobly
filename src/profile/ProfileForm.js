@@ -1,18 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import UserContext from "../hooks/UserContext";
 import "./Profile.css";
+import JoblyApi from "../api/api";
+import { useNavigate } from "react-router-dom";
 
-const ProfileForm = () => {
-  const INITIAL_STATE = { username: "", password: "" };
+const ProfileForm = ({ updateUser }) => {
+  const user = useContext(UserContext);
+  let { username, firstName, lastName, email } = user;
+  let navigate = useNavigate();
+
+  const INITIAL_STATE = { username, firstName, lastName, email };
   const [formData, setFormData] = useState(INITIAL_STATE);
 
   /** Send {firstName, lastName, password, email}
    * to API to patch user data
    *    & clear form. */
 
-  const handleSubmit = (evt) => {
+  const handleSubmit = async (evt) => {
     evt.preventDefault();
-    console.log(formData);
+    delete formData.username;
+    let res = await JoblyApi.updateUserDetails(formData, username);
+    updateUser(res.user);
     setFormData(INITIAL_STATE);
+    navigate("/");
   };
 
   /** Update local state w/curr state of input elem */
@@ -27,7 +37,7 @@ const ProfileForm = () => {
   return (
     <div className="ProfileForm">
       <h2 className="ProfileForm-heading">PROFILE</h2>
-      <form className="ProfileForm-form">
+      <form className="ProfileForm-form" onSubmit={handleSubmit}>
         <label htmlFor="username" className="ProfileForm-label">
           Username:
         </label>
@@ -38,6 +48,7 @@ const ProfileForm = () => {
           onChange={handleChange}
           value={formData.username}
           className="ProfileForm-input"
+          disabled
         />
 
         <label htmlFor="firstName" className="ProfileForm-label">

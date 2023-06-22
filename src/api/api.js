@@ -72,12 +72,28 @@ class JoblyApi {
     this.token = res.token;
     return res.token;
   }
+
+  /** Get user
+   * data: { username }
+   *  => {user details}
+   *      **
+   */
+
+  static async getUserDetails(username) {
+    let res = await this.request(`users/${username}`);
+    return res.user;
+  }
+
+  /** PATCH user
+   * data: { formData: firstName, lastName, email }
+   *  => { user }
+   *      **
+   */
+
+  static async updateUserDetails(data, username) {
+    let res = await this.request(`users/${username}`, data, "patch");
+    return res;
+  }
 }
 
 export default JoblyApi;
-
-// for now, put token ("testuser" / "password" on class)
-JoblyApi.token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
-  "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
-  "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";

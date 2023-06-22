@@ -12,7 +12,7 @@ import Jobs from "../jobs/Jobs";
 import ProfileForm from "../profile/ProfileForm";
 import ProtectedRoutes from "./ProtectedRoutes";
 
-const RoutesComp = ({ loginUser }) => {
+const RoutesComp = ({ loginUser, updateUser }) => {
   return (
     <Routes>
       <Route path="/login" element={<LoginForm loginUser={loginUser} />} />
@@ -46,9 +46,10 @@ const RoutesComp = ({ loginUser }) => {
 
       <Route
         path="/profile"
+        updateUser={updateUser}
         element={
-          <ProtectedRoutes>
-            <ProfileForm />
+          <ProtectedRoutes updateUser={updateUser}>
+            <ProfileForm updateUser={updateUser} />
           </ProtectedRoutes>
         }
       />

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
 import "./NavBar.css";
-import UsernameContext from "../hooks/UsernameContext";
+import UserContext from "../hooks/UserContext";
 
 /**
  * NavBar Component ->
@@ -15,13 +15,16 @@ import UsernameContext from "../hooks/UsernameContext";
  */
 
 const NavBar = ({ logoutUser }) => {
-  const username = useContext(UsernameContext);
+  const user = useContext(UserContext);
 
   const authLinks = () => {
     return (
       <>
         <li className="NavBar-li" style={{ float: "right" }}>
-          <NavLink to="/ " onClick={logoutUser}>{`Logout ${username}`}</NavLink>
+          <NavLink
+            to="/ "
+            onClick={logoutUser}
+          >{`Logout ${user.username}`}</NavLink>
         </li>
         <li className="NavBar-li" style={{ float: "right" }}>
           <NavLink to="/profile ">Profile</NavLink>
@@ -57,7 +60,7 @@ const NavBar = ({ logoutUser }) => {
         </Link>
       </li>
 
-      {username ? authLinks() : anonLinks()}
+      {user ? authLinks() : anonLinks()}
     </ul>
   );
 };
