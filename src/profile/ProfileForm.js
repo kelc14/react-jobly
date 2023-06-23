@@ -3,6 +3,7 @@ import UserContext from "../hooks/UserContext";
 import "./Profile.css";
 import JoblyApi from "../api/api";
 import { useNavigate } from "react-router-dom";
+import useAlerts from "../hooks/useAlerts";
 
 const ProfileForm = ({ updateUser }) => {
   const user = useContext(UserContext);
@@ -11,6 +12,8 @@ const ProfileForm = ({ updateUser }) => {
 
   const INITIAL_STATE = { username, firstName, lastName, email };
   const [formData, setFormData] = useState(INITIAL_STATE);
+
+  const [alert, setAlert, showAlerts] = useAlerts();
 
   /** Send {firstName, lastName, password, email}
    * to API to patch user data
@@ -21,8 +24,13 @@ const ProfileForm = ({ updateUser }) => {
     delete formData.username;
     let res = await JoblyApi.updateUserDetails(formData, username);
     updateUser(res.user);
-    setFormData(INITIAL_STATE);
-    navigate("/");
+    setAlert([
+      {
+        message: "You successfully updated your profile.",
+        type: "success",
+      },
+    ]);
+    // navigate("/");
   };
 
   /** Update local state w/curr state of input elem */
@@ -37,6 +45,7 @@ const ProfileForm = ({ updateUser }) => {
   return (
     <div className="ProfileForm">
       <h2 className="ProfileForm-heading">PROFILE</h2>
+      {alert.length > 0 && showAlerts()}
       <form className="ProfileForm-form" onSubmit={handleSubmit}>
         <label htmlFor="username" className="ProfileForm-label">
           Username:

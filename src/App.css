@@ -42,3 +42,11 @@
   font-style: italic;
   font-size: 1rem;
 }
+
+.Alert-success {
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(145, 237, 148, 0.9);
+  font-size: 1rem;
+  border-radius: 10px;
+}
