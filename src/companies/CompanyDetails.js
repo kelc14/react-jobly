@@ -17,7 +17,7 @@ const CompanyDetails = () => {
       setJobs(() => res.jobs);
     };
     getCompanyByHandle();
-  }, []);
+  }, [handle]);
 
   return (
     <div className="CompanyDetails-container">

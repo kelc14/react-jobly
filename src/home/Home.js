@@ -11,7 +11,7 @@ const Home = () => {
       <h1 className="Home-heading">JOBLY</h1>
       <p className="Home-text">All the jobs in one, convenient place.</p>
       {user ? (
-        <p className="Home-welcome">Welcome back {user.username}!</p>
+        <p className="Home-welcome">Welcome back {user.firstName}!</p>
       ) : (
         <>
           <Link to="/login" className="Home-btn">

@@ -1,20 +1,31 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
+import jwt_decode from "jwt-decode";
+
 import JoblyApi from "./api/api";
 import UserTokenContext from "./hooks/UserTokenContext";
 import UserContext from "./hooks/UserContext";
-import jwt_decode from "jwt-decode";
 
 //components
 import NavBar from "./nav/NavBar";
 import RoutesComp from "./nav/RoutesComp";
 
+import "./App.css";
+
+/** App Component:
+ *
+ *    State:
+ *      - userToken : JWT token returned from API
+ *      - user : user object returned from API
+ *      * * both passed to all children through useContext * *
+ *
+ *    Renders:
+ *    - NavBar
+ *    - RoutesComp   (houses routes)
+ */
+
 function App() {
   const [userToken, setUserToken] = useState();
   const [user, setUser] = useState();
-
-  // console.log("the user is logged in with userToken:", userToken);
-  // console.log("the user is", user);
 
   // check to see if a token is stored in local storage, if so, gather user details based on username and add to state
   useEffect(() => {
@@ -34,11 +45,13 @@ function App() {
   // login user after log in or sign up form completed successfully
   const loginUser = async (username, token) => {
     setUserToken(token);
+    JoblyApi.token = token;
     let userData = await JoblyApi.getUserDetails(username);
     setUser(userData);
     localStorage.setItem("token", token);
   };
 
+  // update user after profile form submit
   const updateUser = (newUserData) => {
     setUser(newUserData);
   };

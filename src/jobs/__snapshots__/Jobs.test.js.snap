@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<DocumentFragment>
+  <div>
+    <h2
+      class="Jobs-heading"
+    >
+      JOBS
+    </h2>
+    <div
+      class="SearchForm"
+    >
+      <form>
+        <input
+          class="SearchForm-input"
+          id="search"
+          name="search"
+          placeholder="Enter search term."
+          type="text"
+          value=""
+        />
+        <button
+          class="SearchForm-btn"
+        >
+          Search
+        </button>
+      </form>
+    </div>
+    <p
+      class="Jobs-error"
+    >
+      Sorry, no results found.
+    </p>
+  </div>
+</DocumentFragment>
+`;

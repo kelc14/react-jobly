@@ -27,10 +27,11 @@
   font-size: 0.8rem;
 }
 
-.Job-container a {
+.Job-apply-btn {
   position: absolute;
   right: 0;
   bottom: 0;
+  border: none;
   background-color: goldenrod;
 
   padding: 10px;
@@ -43,8 +44,25 @@
     0px -4px 10px rgba(255, 255, 255, 0.3); */
 }
 
-.Job-container a:hover {
+.Job-apply-btn:hover {
   background-color: white;
   border: 1px solid goldenrod;
   color: goldenrod;
+}
+
+.Job-apply-btn-success {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border: none;
+  background-color: #4bb543;
+
+  padding: 10px;
+  margin: 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  /* text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.3),
+    0px -4px 10px rgba(255, 255, 255, 0.3); */
 }

@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<DocumentFragment>
+   
+  <div
+    class="App"
+  >
+    <ul
+      class="NavBar"
+    >
+      <li
+        class="NavBar-li"
+      >
+        <a
+          class="Jobly-logo-txt"
+          href="/"
+        >
+          JOBLY
+        </a>
+      </li>
+      <li
+        class="NavBar-li"
+        style="float: right;"
+      >
+        <a
+          class=""
+          href="/signup "
+        >
+          Sign Up
+        </a>
+      </li>
+      <li
+        class="NavBar-li"
+        style="float: right;"
+      >
+        <a
+          class=""
+          href="/login "
+        >
+          Log in
+        </a>
+      </li>
+    </ul>
+    <h1
+      class="Home-heading"
+    >
+      JOBLY
+    </h1>
+    <p
+      class="Home-text"
+    >
+      All the jobs in one, convenient place.
+    </p>
+    <a
+      class="Home-btn"
+      href="/login"
+    >
+      Log in
+    </a>
+    <a
+      class="Home-btn"
+      href="/signup"
+    >
+      Sign up
+    </a>
+  </div>
+</DocumentFragment>
+`;

@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<DocumentFragment>
+  <h1
+    class="Home-heading"
+  >
+    JOBLY
+  </h1>
+  <p
+    class="Home-text"
+  >
+    All the jobs in one, convenient place.
+  </p>
+  <a
+    class="Home-btn"
+    href="/login"
+  >
+    Log in
+  </a>
+  <a
+    class="Home-btn"
+    href="/signup"
+  >
+    Sign up
+  </a>
+</DocumentFragment>
+`;

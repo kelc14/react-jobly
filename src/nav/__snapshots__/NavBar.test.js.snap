@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<DocumentFragment>
+  <ul
+    class="NavBar"
+  >
+    <li
+      class="NavBar-li"
+    >
+      <a
+        class="Jobly-logo-txt"
+        href="/"
+      >
+        JOBLY
+      </a>
+    </li>
+    <li
+      class="NavBar-li"
+      style="float: right;"
+    >
+      <a
+        class=""
+        href="/signup "
+      >
+        Sign Up
+      </a>
+    </li>
+    <li
+      class="NavBar-li"
+      style="float: right;"
+    >
+      <a
+        class=""
+        href="/login "
+      >
+        Log in
+      </a>
+    </li>
+  </ul>
+</DocumentFragment>
+`;

@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Job.css";
-import { Link } from "react-router-dom";
+import UserContext from "../hooks/UserContext";
+import JoblyApi from "../api/api";
 
 const Job = ({ jobData, companiesData }) => {
   const [company, setCompany] = useState({});
-  const { title, salary, equity, company_handle } = jobData;
+  const user = useContext(UserContext);
+  const { title, salary, equity, company_handle, id } = jobData;
 
   useEffect(() => {
-    if (typeof companiesData === "Array") {
+    // need to refactor here:***************************************
+    if (Array.isArray(companiesData)) {
       let companyData = companiesData.find(
         (comp) => comp.handle === company_handle
       );
@@ -15,7 +18,30 @@ const Job = ({ jobData, companiesData }) => {
     } else {
       setCompany(companiesData);
     }
-  }, []);
+  }, [companiesData, company_handle]);
+
+  const handleApply = async (e) => {
+    e.preventDefault();
+    await JoblyApi.applyForJob(user.username, id);
+  };
+
+  const toggleApply = () => {
+    if (!user.jobs.includes(id)) {
+      return (
+        <form onSubmit={handleApply}>
+          <button className="Job-apply-btn">APPLY NOW</button>
+        </form>
+      );
+    } else {
+      return (
+        <button className="Job-apply-btn-success">
+          {" "}
+          <span>&#10003;</span>
+          Applied!
+        </button>
+      );
+    }
+  };
 
   return (
     <div className="Job-container">
@@ -23,7 +49,8 @@ const Job = ({ jobData, companiesData }) => {
       <p className="Job-company"> {company.name} </p>
       <p className="Job-about"> Salary: {salary} </p>
       <p className="Job-about"> Equity: {equity} </p>
-      <Link to="/">APPLY NOW</Link>
+
+      {toggleApply()}
     </div>
   );
 };

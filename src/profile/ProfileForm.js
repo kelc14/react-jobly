@@ -2,13 +2,11 @@ import React, { useState, useContext } from "react";
 import UserContext from "../hooks/UserContext";
 import "./Profile.css";
 import JoblyApi from "../api/api";
-import { useNavigate } from "react-router-dom";
 import useAlerts from "../hooks/useAlerts";
 
 const ProfileForm = ({ updateUser }) => {
   const user = useContext(UserContext);
   let { username, firstName, lastName, email } = user;
-  let navigate = useNavigate();
 
   const INITIAL_STATE = { username, firstName, lastName, email };
   const [formData, setFormData] = useState(INITIAL_STATE);
@@ -30,7 +28,6 @@ const ProfileForm = ({ updateUser }) => {
         type: "success",
       },
     ]);
-    // navigate("/");
   };
 
   /** Update local state w/curr state of input elem */

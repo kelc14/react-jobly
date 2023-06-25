@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./SignUpForm.css";
 import JoblyApi from "../api/api";
+import useErrors from "../hooks/useErrors";
+import { useNavigate } from "react-router-dom";
 
 const SignUpForm = ({ loginUser }) => {
   const INITIAL_STATE = {
@@ -11,14 +13,22 @@ const SignUpForm = ({ loginUser }) => {
     email: "",
   };
   const [formData, setFormData] = useState(INITIAL_STATE);
+  let navigate = useNavigate();
+
+  const [err, documentErrors, showFormError] = useErrors();
 
   /** Send {USERNAME, PASSWORD} to API to check if logged in and provide feedback
    *    & clear form. */
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
-    //
-    loginUser();
+    try {
+      let token = await JoblyApi.userSignup(formData);
+      loginUser(formData.username, token);
+      navigate("/");
+    } catch (err) {
+      documentErrors(err);
+    }
     setFormData(INITIAL_STATE);
   };
 
@@ -36,9 +46,9 @@ const SignUpForm = ({ loginUser }) => {
    *
    */
   return (
-    <div className="SignUpForm" onSubmit={handleSubmit}>
+    <div className="SignUpForm">
       <h2 className="SignUpForm-heading">Sign Up</h2>
-      <form className="SignUpForm-form">
+      <form className="SignUpForm-form" onSubmit={handleSubmit}>
         <label htmlFor="username" className="SignUpForm-label">
           Username:
         </label>
@@ -96,6 +106,7 @@ const SignUpForm = ({ loginUser }) => {
           value={formData.email}
           className="SignUpForm-input"
         />
+        {err && showFormError()}
 
         <button className="SignUpForm-button">Sign Up</button>
       </form>
