@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import "./SearchForm.css";
 
+/** SearchForm component
+ * - filters based off of an input
+ *
+ * Rendered in Jobs component & Companies component
+ *
+ */
+
 const SearchForm = ({ type, search }) => {
   const INITIAL_STATE = { search: "" };
   const [formData, setFormData] = useState(INITIAL_STATE);

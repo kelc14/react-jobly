@@ -5,6 +5,10 @@ import { useParams, Link } from "react-router-dom";
 import JoblyApi from "../api/api";
 import Job from "../jobs/Job";
 
+/** Company details page:
+ * displays information about the company - name, description - and list of all jobs (Job components)
+ */
+
 const CompanyDetails = () => {
   const { handle } = useParams();
   const [company, setCompany] = useState({});

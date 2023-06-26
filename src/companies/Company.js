@@ -2,6 +2,15 @@ import React from "react";
 import "./Company.css";
 import { Link } from "react-router-dom";
 
+/** Company component
+ *
+ * displays individual company information
+ * - name, description, number of employees and logo if available
+ *
+ * Entire component acts as a link to company detail page
+ *
+ */
+
 const Company = ({ data }) => {
   const { name, handle, description, numEmployees, logoUrl } = data;
   return (

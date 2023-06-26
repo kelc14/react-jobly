@@ -3,6 +3,16 @@ import "./Job.css";
 import UserContext from "../hooks/UserContext";
 import JoblyApi from "../api/api";
 
+/** Job component
+ *
+ * displays individual job information
+ * - title, salary, equity and company
+ * - displays APPLY button which applies to a job for the user
+ *            => adds to list of jobs
+ *
+ *
+ */
+
 const Job = ({ jobData, companiesData }) => {
   const [company, setCompany] = useState({});
   const user = useContext(UserContext);

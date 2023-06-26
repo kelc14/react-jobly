@@ -3,6 +3,13 @@ import { Link } from "react-router-dom";
 import "./Home.css";
 import UserContext from "../hooks/UserContext";
 
+/** Homepage component
+ *
+ * welcomes user if logged in
+ *
+ * displays: log in & sign up button if not signed in
+ */
+
 const Home = () => {
   const user = useContext(UserContext);
 

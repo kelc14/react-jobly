@@ -4,6 +4,13 @@ import Job from "./Job";
 import SearchForm from "../common/SearchForm";
 import JoblyApi from "../api/api";
 
+/** Jobs component
+ *
+ * renders
+ * - searchform to filter jobs by title
+ * - list of all jobs (Job components)
+ */
+
 const Jobs = () => {
   const [jobs, setJobs] = useState([]);
   const [companies, setCompanies] = useState([]);

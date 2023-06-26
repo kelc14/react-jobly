@@ -5,6 +5,13 @@ import "./Companies.css";
 
 import JoblyApi from "../api/api";
 
+/** Companies component
+ *
+ * renders
+ * - searchform to filter companies by name
+ * - list of all companies (Company components)
+ */
+
 const Companies = () => {
   const [companies, setCompanies] = useState([]);
 

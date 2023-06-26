@@ -4,6 +4,16 @@ import "./Profile.css";
 import JoblyApi from "../api/api";
 import useAlerts from "../hooks/useAlerts";
 
+/** ProfileForm component
+ *
+ * Updates user profile:
+ * - first name
+ * - last name
+ * - email
+ *
+ *    => updates State [user] in app
+ */
+
 const ProfileForm = ({ updateUser }) => {
   const user = useContext(UserContext);
   let { username, firstName, lastName, email } = user;
