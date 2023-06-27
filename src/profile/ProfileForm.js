@@ -3,6 +3,7 @@ import UserContext from "../hooks/UserContext";
 import "./Profile.css";
 import JoblyApi from "../api/api";
 import useAlerts from "../hooks/useAlerts";
+import useErrors from "../hooks/useErrors";
 
 /** ProfileForm component
  *
@@ -22,6 +23,7 @@ const ProfileForm = ({ updateUser }) => {
   const [formData, setFormData] = useState(INITIAL_STATE);
 
   const [alert, setAlert, showAlerts] = useAlerts();
+  const [err, documentErrors, showFormError] = useErrors();
 
   /** Send {firstName, lastName, password, email}
    * to API to patch user data
@@ -30,14 +32,18 @@ const ProfileForm = ({ updateUser }) => {
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     delete formData.username;
-    let res = await JoblyApi.updateUserDetails(formData, username);
-    updateUser(res.user);
-    setAlert([
-      {
-        message: "You successfully updated your profile.",
-        type: "success",
-      },
-    ]);
+    try {
+      let res = await JoblyApi.updateUserDetails(formData, username);
+      updateUser(res.user);
+      setAlert([
+        {
+          message: "You successfully updated your profile.",
+          type: "success",
+        },
+      ]);
+    } catch (err) {
+      documentErrors(err);
+    }
   };
 
   /** Update local state w/curr state of input elem */
@@ -49,6 +55,7 @@ const ProfileForm = ({ updateUser }) => {
       [name]: value,
     }));
   };
+
   return (
     <div className="ProfileForm">
       <h2 className="ProfileForm-heading">PROFILE</h2>
@@ -100,6 +107,7 @@ const ProfileForm = ({ updateUser }) => {
           value={formData.email}
           className="ProfileForm-input"
         />
+        {err && showFormError()}
 
         <button className="ProfileForm-button">Update</button>
       </form>

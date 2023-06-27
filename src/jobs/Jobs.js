@@ -11,7 +11,7 @@ import JoblyApi from "../api/api";
  * - list of all jobs (Job components)
  */
 
-const Jobs = () => {
+const Jobs = ({ addNewJob }) => {
   const [jobs, setJobs] = useState([]);
   const [companies, setCompanies] = useState([]);
 
@@ -45,7 +45,12 @@ const Jobs = () => {
         <p className="Jobs-error">Sorry, no results found.</p>
       ) : (
         jobs.map((job) => (
-          <Job jobData={job} companiesData={companies} key={job.id} />
+          <Job
+            jobData={job}
+            companiesData={companies}
+            addNewJob={addNewJob}
+            key={job.id}
+          />
         ))
       )}
     </div>

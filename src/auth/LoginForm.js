@@ -18,13 +18,13 @@ const LoginForm = ({ loginUser }) => {
     evt.preventDefault();
     try {
       let token = await JoblyApi.userLogin(formData);
-
-      loginUser(formData.username, token);
+      console.log("token", token);
+      if (token) loginUser(formData.username, token);
       navigate("/");
+      setFormData(INITIAL_STATE);
     } catch (err) {
       documentErrors(err);
     }
-    setFormData(INITIAL_STATE);
   };
 
   /** setLoggedInContext */
@@ -56,6 +56,7 @@ const LoginForm = ({ loginUser }) => {
           onChange={handleChange}
           value={formData.username}
           className="LoginForm-input"
+          autoComplete="username"
         />
 
         <label htmlFor="password" className="LoginForm-label">
@@ -68,6 +69,7 @@ const LoginForm = ({ loginUser }) => {
           onChange={handleChange}
           value={formData.password}
           className="LoginForm-input"
+          autoComplete="current-password"
         />
         {err && showFormError()}
 

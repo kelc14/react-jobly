@@ -59,6 +59,7 @@ const SignUpForm = ({ loginUser }) => {
           onChange={handleChange}
           value={formData.username}
           className="SignUpForm-input"
+          autoComplete="username"
         />
 
         <label htmlFor="password" className="SignUpForm-label">
@@ -71,6 +72,7 @@ const SignUpForm = ({ loginUser }) => {
           onChange={handleChange}
           value={formData.password}
           className="SignUpForm-input"
+          autoComplete="new-password"
         />
 
         <label htmlFor="firstName" className="SignUpForm-label">

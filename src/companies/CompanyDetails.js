@@ -6,10 +6,11 @@ import JoblyApi from "../api/api";
 import Job from "../jobs/Job";
 
 /** Company details page:
+ *
  * displays information about the company - name, description - and list of all jobs (Job components)
  */
 
-const CompanyDetails = () => {
+const CompanyDetails = ({ addNewJob }) => {
   const { handle } = useParams();
   const [company, setCompany] = useState({});
   const [jobs, setJobs] = useState([]);
@@ -36,7 +37,12 @@ const CompanyDetails = () => {
         </div>
       ) : (
         jobs.map((job) => (
-          <Job jobData={job} companiesData={company} key={job.id} />
+          <Job
+            jobData={job}
+            companiesData={company}
+            addNewJob={addNewJob}
+            key={job.id}
+          />
         ))
       )}
     </div>

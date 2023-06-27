@@ -12,7 +12,7 @@ import Jobs from "../jobs/Jobs";
 import ProfileForm from "../profile/ProfileForm";
 import ProtectedRoutes from "./ProtectedRoutes";
 
-const RoutesComp = ({ loginUser, updateUser }) => {
+const RoutesComp = ({ loginUser, updateUser, addNewJob }) => {
   return (
     <Routes>
       <Route path="/login" element={<LoginForm loginUser={loginUser} />} />
@@ -30,7 +30,7 @@ const RoutesComp = ({ loginUser, updateUser }) => {
         path="/companies/:handle"
         element={
           <ProtectedRoutes>
-            =<CompanyDetails />
+            =<CompanyDetails addNewJob={addNewJob} />
           </ProtectedRoutes>
         }
       />
@@ -39,7 +39,7 @@ const RoutesComp = ({ loginUser, updateUser }) => {
         path="/jobs"
         element={
           <ProtectedRoutes>
-            <Jobs />
+            <Jobs addNewJob={addNewJob} />
           </ProtectedRoutes>
         }
       />

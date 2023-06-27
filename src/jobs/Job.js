@@ -13,7 +13,7 @@ import JoblyApi from "../api/api";
  *
  */
 
-const Job = ({ jobData, companiesData }) => {
+const Job = ({ jobData, companiesData, addNewJob }) => {
   const [company, setCompany] = useState({});
   const user = useContext(UserContext);
   const { title, salary, equity, company_handle, id } = jobData;
@@ -33,6 +33,7 @@ const Job = ({ jobData, companiesData }) => {
   const handleApply = async (e) => {
     e.preventDefault();
     await JoblyApi.applyForJob(user.username, id);
+    addNewJob(id);
   };
 
   const toggleApply = () => {

@@ -16,6 +16,7 @@ import "./App.css";
  *    State:
  *      - userToken : JWT token returned from API
  *      - user : user object returned from API
+ *      - jobs: array of jobIds of applied to jobs
  *      * * both passed to all children through useContext * *
  *
  *    Renders:
@@ -26,21 +27,33 @@ import "./App.css";
 function App() {
   const [userToken, setUserToken] = useState();
   const [user, setUser] = useState();
+  const [jobs, setJobs] = useState([]);
 
   // check to see if a token is stored in local storage, if so, gather user details based on username and add to state
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    JoblyApi.token = storedToken;
-    if (storedToken) {
+    if (localStorage.hasOwnProperty("token")) {
+      console.log("this happened");
+
+      const storedToken = localStorage.getItem("token");
+      JoblyApi.token = storedToken;
       const { username } = jwt_decode(storedToken);
       const getUserInfo = async () => {
         let userData = await JoblyApi.getUserDetails(username);
         setUser(userData);
+        setJobs(userData.jobs);
       };
       getUserInfo(username);
       setUserToken(storedToken);
     }
   }, [userToken]);
+
+  // update user if jobs changes:
+  useEffect(() => {
+    // check for token so that user is not set on initial load
+    if (localStorage.hasOwnProperty("token")) {
+      setUser(() => ({ ...user, jobs }));
+    }
+  }, [jobs]);
 
   // login user after log in or sign up form completed successfully
   const loginUser = async (username, token) => {
@@ -53,7 +66,12 @@ function App() {
 
   // update user after profile form submit
   const updateUser = (newUserData) => {
-    setUser(newUserData);
+    setUser(() => ({ ...newUserData, jobs }));
+  };
+
+  //update jobs after apply
+  const addNewJob = (id) => {
+    setJobs(() => [...jobs, id]);
   };
 
   // log out user after log out button clicked, clear local storage
@@ -68,7 +86,11 @@ function App() {
       <UserTokenContext.Provider value={userToken}>
         <UserContext.Provider value={user}>
           <NavBar loginUser={loginUser} logoutUser={logoutUser} />
-          <RoutesComp loginUser={loginUser} updateUser={updateUser} />
+          <RoutesComp
+            loginUser={loginUser}
+            updateUser={updateUser}
+            addNewJob={addNewJob}
+          />
         </UserContext.Provider>
       </UserTokenContext.Provider>
     </div>
