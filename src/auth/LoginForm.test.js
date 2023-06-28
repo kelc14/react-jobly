@@ -28,7 +28,7 @@ it("renders without crashing", function () {
 
 /** LOGIN FORM e2e */
 
-it("logs a user in", function async() {
+it("logs a user in", async () => {
   const loginUser = jest.fn();
   render(
     <MemoryRouter>
@@ -40,14 +40,15 @@ it("logs a user in", function async() {
   const passwordInput = screen.getByLabelText("Password:");
   const loginBtn = screen.getByText("Log in");
 
-  userEvent.type(usernameInput, "testuser");
-  userEvent.type(passwordInput, "password");
-  userEvent.click(loginBtn);
+  await userEvent.type(usernameInput, "testuser");
+  await userEvent.type(passwordInput, "password");
+  await userEvent.click(loginBtn);
 
-  //   expect(loginUser).toHaveBeenCalledWith({
-  //     username: "testuser",
-  //     password: "password",
-  //   });
+  console.log(loginUser.mock.calls);
+  expect(loginUser).toHaveBeenCalledWith({
+    username: "testuser",
+    password: "password",
+  });
 
   /// this is where I am stuck
 });
