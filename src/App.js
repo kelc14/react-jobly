@@ -34,16 +34,24 @@ function App() {
   // check to see if a token is stored in local storage, if so, gather user details based on username and add to state
   useEffect(() => {
     if (localStorage.hasOwnProperty("token")) {
-      const storedToken = localStorage.getItem("token");
-      JoblyApi.token = storedToken;
-      const { username } = jwt_decode(storedToken);
-      const getUserInfo = async () => {
-        let userData = await JoblyApi.getUserDetails(username);
-        setUser(userData);
-        setJobs(userData.jobs);
-      };
-      getUserInfo(username);
-      setUserToken(storedToken);
+      try {
+        const storedToken = localStorage.getItem("token");
+        JoblyApi.token = storedToken;
+        const { username } = jwt_decode(storedToken);
+        const getUserInfo = async () => {
+          let userData = await JoblyApi.getUserDetails(username);
+          setUser(userData);
+          setJobs(userData.jobs);
+        };
+        getUserInfo(username);
+        setUserToken(storedToken);
+      } catch (e) {
+        documentErrors(e);
+        // show error and clear any saved user information
+        setUserToken(null);
+        setUser(null);
+        localStorage.clear();
+      }
     }
   }, [userToken]);
 
