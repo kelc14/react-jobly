@@ -4,6 +4,7 @@ import jwt_decode from "jwt-decode";
 import JoblyApi from "./api/api";
 import UserTokenContext from "./hooks/UserTokenContext";
 import UserContext from "./hooks/UserContext";
+import useErrors from "./hooks/useErrors";
 
 //components
 import NavBar from "./nav/NavBar";
@@ -28,12 +29,11 @@ function App() {
   const [userToken, setUserToken] = useState();
   const [user, setUser] = useState();
   const [jobs, setJobs] = useState([]);
+  const [err, documentErrors, showError] = useErrors();
 
   // check to see if a token is stored in local storage, if so, gather user details based on username and add to state
   useEffect(() => {
     if (localStorage.hasOwnProperty("token")) {
-      console.log("this happened");
-
       const storedToken = localStorage.getItem("token");
       JoblyApi.token = storedToken;
       const { username } = jwt_decode(storedToken);
@@ -51,7 +51,9 @@ function App() {
   useEffect(() => {
     // check for token so that user is not set on initial load
     if (localStorage.hasOwnProperty("token")) {
-      setUser(() => ({ ...user, jobs }));
+      const newUser = { ...user };
+      newUser.jobs = jobs;
+      setUser(() => ({ ...newUser }));
     }
   }, [jobs]);
 
@@ -59,8 +61,13 @@ function App() {
   const loginUser = async (username, token) => {
     setUserToken(token);
     JoblyApi.token = token;
-    let userData = await JoblyApi.getUserDetails(username);
-    setUser(userData);
+    try {
+      let userData = await JoblyApi.getUserDetails(username);
+      setUser(userData);
+    } catch (e) {
+      documentErrors(e);
+    }
+
     localStorage.setItem("token", token);
   };
 
@@ -86,6 +93,9 @@ function App() {
       <UserTokenContext.Provider value={userToken}>
         <UserContext.Provider value={user}>
           <NavBar loginUser={loginUser} logoutUser={logoutUser} />
+
+          {err && showError()}
+
           <RoutesComp
             loginUser={loginUser}
             updateUser={updateUser}

@@ -46,7 +46,16 @@
 .Alert-success {
   margin: 0 auto;
   padding: 20px;
-  background-color: rgba(145, 237, 148, 0.9);
+  background-color: #12c99b;
+  color: white;
+  font-size: 1rem;
+  border-radius: 10px;
+}
+.Alert-error {
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #e41749;
+  color: white;
   font-size: 1rem;
   border-radius: 10px;
 }

@@ -18,8 +18,7 @@ const LoginForm = ({ loginUser }) => {
     evt.preventDefault();
     try {
       let token = await JoblyApi.userLogin(formData);
-      console.log("token", token);
-      if (token) loginUser(formData.username, token);
+      loginUser(formData.username, token);
       navigate("/");
       setFormData(INITIAL_STATE);
     } catch (err) {
