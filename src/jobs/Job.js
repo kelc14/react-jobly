@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import "./Job.css";
 import UserContext from "../hooks/UserContext";
 import JoblyApi from "../api/api";
+import useErrors from "../hooks/useErrors";
 
 /** Job component
  *
@@ -18,8 +19,10 @@ const Job = ({ jobData, companiesData, addNewJob }) => {
   const user = useContext(UserContext);
   const { title, salary, equity, company_handle, id } = jobData;
 
+  const [err, documentErrors, showError] = useErrors();
+
   useEffect(() => {
-    // need to refactor here:***************************************
+    // it is an array if it comes from Jobs, if it comes from companyDetails then it is not an array, just an object - also need to find company_handle if it comes from Jobs
     if (Array.isArray(companiesData)) {
       let companyData = companiesData.find(
         (comp) => comp.handle === company_handle
@@ -32,8 +35,12 @@ const Job = ({ jobData, companiesData, addNewJob }) => {
 
   const handleApply = async (e) => {
     e.preventDefault();
-    await JoblyApi.applyForJob(user.username, id);
-    addNewJob(id);
+    try {
+      await JoblyApi.applyForJob(user.username, id);
+      addNewJob(id);
+    } catch (e) {
+      documentErrors(e);
+    }
   };
 
   const toggleApply = () => {
@@ -62,6 +69,8 @@ const Job = ({ jobData, companiesData, addNewJob }) => {
       <p className="Job-about"> Equity: {equity} </p>
 
       {toggleApply()}
+
+      {err && showError()}
     </div>
   );
 };

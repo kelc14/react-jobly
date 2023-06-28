@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./CompanyDetails.css";
 import { useParams, Link } from "react-router-dom";
+import useErrors from "../hooks/useErrors";
 
 import JoblyApi from "../api/api";
 import Job from "../jobs/Job";
@@ -15,14 +16,20 @@ const CompanyDetails = ({ addNewJob }) => {
   const [company, setCompany] = useState({});
   const [jobs, setJobs] = useState([]);
 
+  const [err, documentErrors, showError] = useErrors();
+
   useEffect(() => {
     const getCompanyByHandle = async () => {
-      let res = await JoblyApi.getCompany(handle);
-      setCompany(() => res);
-      setJobs(() => res.jobs);
+      try {
+        let res = await JoblyApi.getCompany(handle);
+        setCompany(() => res);
+        setJobs(() => res.jobs);
+      } catch (e) {
+        documentErrors(e);
+      }
     };
     getCompanyByHandle();
-  }, [handle]);
+  }, [handle, documentErrors]);
 
   return (
     <div className="CompanyDetails-container">
@@ -33,6 +40,8 @@ const CompanyDetails = ({ addNewJob }) => {
           <p className="CompanyDetails-error">
             Sorry, no jobs to display. Check back later.
           </p>
+          {err && showError()}
+
           <Link to="/companies">View All Companies</Link>
         </div>
       ) : (

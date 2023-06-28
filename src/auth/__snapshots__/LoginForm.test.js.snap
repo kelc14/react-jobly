@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<DocumentFragment>
+   
+  <div
+    class="LoginForm"
+  >
+    <h2
+      class="LoginForm-heading"
+    >
+      Log In
+    </h2>
+    <form
+      class="LoginForm-form"
+    >
+      <label
+        class="LoginForm-label"
+        for="username"
+      >
+        Username:
+      </label>
+      <input
+        autocomplete="username"
+        class="LoginForm-input"
+        id="username"
+        name="username"
+        type="text"
+        value=""
+      />
+      <label
+        class="LoginForm-label"
+        for="password"
+      >
+        Password:
+      </label>
+      <input
+        autocomplete="current-password"
+        class="LoginForm-input"
+        id="password"
+        name="password"
+        type="password"
+        value=""
+      />
+      <button
+        class="LoginForm-button"
+      >
+        Log in
+      </button>
+    </form>
+  </div>
+</DocumentFragment>
+`;
