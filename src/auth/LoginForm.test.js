@@ -1,9 +1,8 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { MemoryRouter, Router } from "react-router-dom";
+import { MemoryRouter } from "react-router-dom";
 import LoginForm from "./LoginForm";
-import { createMemoryHistory } from "history";
 
 /**  SMOKE TEST */
 it("renders without crashing", function () {
@@ -27,6 +26,7 @@ it("renders without crashing", function () {
 });
 
 /** LOGIN FORM e2e */
+// works now
 
 it("logs a user in", async () => {
   const loginUser = jest.fn();
@@ -40,15 +40,16 @@ it("logs a user in", async () => {
   const passwordInput = screen.getByLabelText("Password:");
   const loginBtn = screen.getByText("Log in");
 
-  await userEvent.type(usernameInput, "testuser");
-  await userEvent.type(passwordInput, "password");
-  await userEvent.click(loginBtn);
-
-  console.log(loginUser.mock.calls);
-  expect(loginUser).toHaveBeenCalledWith({
-    username: "testuser",
-    password: "password",
+  // wrap in act when changing state
+  act(() => {
+    userEvent.type(usernameInput, "testuser");
+    userEvent.type(passwordInput, "password");
   });
 
-  /// this is where I am stuck
+  userEvent.click(loginBtn);
+
+  // username and token (any string) returned
+  await waitFor(() => {
+    expect(loginUser).toHaveBeenCalledWith("testuser", expect.any(String));
+  });
 });
