@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<DocumentFragment>
+  <div
+    class="ProfileForm"
+  >
+    <h2
+      class="ProfileForm-heading"
+    >
+      PROFILE
+    </h2>
+    <form
+      class="ProfileForm-form"
+    >
+      <label
+        class="ProfileForm-label"
+        for="username"
+      >
+        Username:
+      </label>
+      <input
+        class="ProfileForm-input"
+        disabled=""
+        id="username"
+        name="username"
+        type="text"
+        value="testingUser"
+      />
+      <label
+        class="ProfileForm-label"
+        for="firstName"
+      >
+        First Name:
+      </label>
+      <input
+        class="ProfileForm-input"
+        id="firstName"
+        name="firstName"
+        type="text"
+        value="testFirst"
+      />
+      <label
+        class="ProfileForm-label"
+        for="lastName"
+      >
+        Last Name:
+      </label>
+      <input
+        class="ProfileForm-input"
+        id="lastName"
+        name="lastName"
+        type="text"
+        value="testLast"
+      />
+      <label
+        class="ProfileForm-label"
+        for="email"
+      >
+        Email:
+      </label>
+      <input
+        class="ProfileForm-input"
+        id="email"
+        name="email"
+        type="email"
+        value="email@email.com"
+      />
+      <button
+        class="ProfileForm-button"
+      >
+        Update
+      </button>
+    </form>
+  </div>
+</DocumentFragment>
+`;
