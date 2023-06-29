@@ -40,7 +40,7 @@ const Jobs = ({ addNewJob }) => {
       }
     };
     getJobs();
-  }, [documentErrors]);
+  }, []);
 
   const searchJobs = async (data) => {
     try {

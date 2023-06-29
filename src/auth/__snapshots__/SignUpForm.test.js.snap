@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<DocumentFragment>
+  <div
+    class="SignUpForm"
+  >
+    <h2
+      class="SignUpForm-heading"
+    >
+      Sign Up For Jobly Account
+    </h2>
+    <form
+      class="SignUpForm-form"
+    >
+      <label
+        class="SignUpForm-label"
+        for="username"
+      >
+        Username:
+      </label>
+      <input
+        autocomplete="username"
+        class="SignUpForm-input"
+        id="username"
+        name="username"
+        type="text"
+        value=""
+      />
+      <label
+        class="SignUpForm-label"
+        for="password"
+      >
+        Password:
+      </label>
+      <input
+        autocomplete="new-password"
+        class="SignUpForm-input"
+        id="password"
+        name="password"
+        type="password"
+        value=""
+      />
+      <label
+        class="SignUpForm-label"
+        for="firstName"
+      >
+        First Name:
+      </label>
+      <input
+        class="SignUpForm-input"
+        id="firstName"
+        name="firstName"
+        type="text"
+        value=""
+      />
+      <label
+        class="SignUpForm-label"
+        for="lastName"
+      >
+        Last Name:
+      </label>
+      <input
+        class="SignUpForm-input"
+        id="lastName"
+        name="lastName"
+        type="text"
+        value=""
+      />
+      <label
+        class="SignUpForm-label"
+        for="email"
+      >
+        Email Address:
+      </label>
+      <input
+        class="SignUpForm-input"
+        id="email"
+        name="email"
+        type="email"
+        value=""
+      />
+      <button
+        class="SignUpForm-button"
+      >
+        Sign Up
+      </button>
+    </form>
+  </div>
+</DocumentFragment>
+`;

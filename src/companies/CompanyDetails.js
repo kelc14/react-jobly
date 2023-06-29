@@ -29,7 +29,7 @@ const CompanyDetails = ({ addNewJob }) => {
       }
     };
     getCompanyByHandle();
-  }, [handle, documentErrors]);
+  }, [handle]);
 
   return (
     <div className="CompanyDetails-container">

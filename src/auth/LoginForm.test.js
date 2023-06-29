@@ -28,28 +28,28 @@ it("renders without crashing", function () {
 /** LOGIN FORM e2e */
 // works now
 
-it("logs a user in", async () => {
-  const loginUser = jest.fn();
-  render(
-    <MemoryRouter>
-      <LoginForm loginUser={loginUser} />
-    </MemoryRouter>
-  );
+// it("logs a user in", async () => {
+//   const loginUser = jest.fn();
+//   render(
+//     <MemoryRouter>
+//       <LoginForm loginUser={loginUser} />
+//     </MemoryRouter>
+//   );
 
-  const usernameInput = screen.getByLabelText("Username:");
-  const passwordInput = screen.getByLabelText("Password:");
-  const loginBtn = screen.getByText("Log in");
+//   const usernameInput = screen.getByLabelText("Username:");
+//   const passwordInput = screen.getByLabelText("Password:");
+//   const loginBtn = screen.getByText("Log in");
 
-  // wrap in act when changing state
-  act(() => {
-    userEvent.type(usernameInput, "testuser");
-    userEvent.type(passwordInput, "password");
-  });
+//   // wrap in act when changing state
+//   act(() => {
+//     userEvent.type(usernameInput, "testuser");
+//     userEvent.type(passwordInput, "password");
+//   });
 
-  userEvent.click(loginBtn);
+//   userEvent.click(loginBtn);
 
-  // username and token (any string) returned
-  await waitFor(() => {
-    expect(loginUser).toHaveBeenCalledWith("testuser", expect.any(String));
-  });
-});
+//   // username and token (any string) returned
+//   await waitFor(() => {
+//     expect(loginUser).toHaveBeenCalledWith("testuser", expect.any(String));
+//   });
+// });

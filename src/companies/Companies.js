@@ -28,7 +28,7 @@ const Companies = () => {
       }
     };
     getCompanies();
-  }, [documentErrors]);
+  }, []);
 
   const searchCompanies = async (data) => {
     try {

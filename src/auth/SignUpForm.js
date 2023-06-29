@@ -47,7 +47,7 @@ const SignUpForm = ({ loginUser }) => {
    */
   return (
     <div className="SignUpForm">
-      <h2 className="SignUpForm-heading">Sign Up</h2>
+      <h2 className="SignUpForm-heading">Sign Up For Jobly Account</h2>
       <form className="SignUpForm-form" onSubmit={handleSubmit}>
         <label htmlFor="username" className="SignUpForm-label">
           Username:
