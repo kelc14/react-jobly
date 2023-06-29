@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 // components
 import Home from "../home/Home";
@@ -55,6 +55,7 @@ const RoutesComp = ({ loginUser, updateUser, addNewJob }) => {
       />
 
       <Route path="/" element={<Home />} />
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 };
