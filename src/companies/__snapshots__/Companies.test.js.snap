@@ -1,12 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`matches snapshot 1`] = `
+exports[`Companies matches snapshot 1`] = `
 <DocumentFragment>
+   
   <div>
     <h2
-      class="Jobs-heading"
+      class="Companies-heading"
     >
-      JOBS
+      COMPANIES
     </h2>
     <div
       class="SearchForm"
@@ -28,7 +29,7 @@ exports[`matches snapshot 1`] = `
       </form>
     </div>
     <p
-      class="Jobs-error"
+      class="Companies-error"
     >
       Sorry, no results found.
     </p>

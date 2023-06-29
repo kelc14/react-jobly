@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CompanyDetails matches snapshot 1`] = `
+<DocumentFragment>
+   
+  <div
+    class="CompanyDetails-container"
+  >
+    <p
+      class="CompanyDetails-company"
+    >
+        
+    </p>
+    <p
+      class="CompanyDetails-about"
+    >
+       
+    </p>
+    <div
+      class="CompanyDetails-error-container"
+    >
+      <p
+        class="CompanyDetails-error"
+      >
+        Sorry, no jobs to display. Check back later.
+      </p>
+      <a
+        href="/companies"
+      >
+        View All Companies
+      </a>
+    </div>
+  </div>
+</DocumentFragment>
+`;

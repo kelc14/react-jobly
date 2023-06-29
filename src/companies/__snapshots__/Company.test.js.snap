@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Company matches snapshot 1`] = `
+<DocumentFragment>
+   
+  <a
+    class="Company-link"
+    href="/test-company"
+  >
+    <div
+      class="Company-container"
+    >
+      <p
+        class="Company-company"
+      >
+         Test Company 
+      </p>
+      <p
+        class="Company-about"
+      >
+         Description: This is a test company for mocking our API calls. 
+      </p>
+      <p
+        class="Company-about"
+      >
+         Number of Employees: 1000 
+      </p>
+    </div>
+     
+  </a>
+</DocumentFragment>
+`;

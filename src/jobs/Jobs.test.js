@@ -13,7 +13,7 @@ it("renders without crashing", function () {
 });
 
 /**  SNAPSHOT TEST */
-it("renders without crashing", function () {
+it("matches snapshot", function () {
   const { asFragment } = render(
     <MemoryRouter>
       <Jobs />
